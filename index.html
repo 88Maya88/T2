@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AttriLens wireframe</title>
+
+  <!-- Optional fonts. The wireframe still works offline with the fallback stack. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ======================= Site header ======================= -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#landing">
+        <span class="logo ph" aria-hidden="true"></span>
+        AttriLens
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <ul>
+          <li><a href="#landing">Home</a></li>
+          <li><a href="#survey">Survey form</a></li>
+          <li><a href="#result">Prediction result</a></li>
+        </ul>
+      </nav>
+
+      <span class="chip">Wireframe v1</span>
+    </div>
+  </header>
+
+  <!-- Wireframe-only controls: remove before building the real prototype -->
+  <div class="tools">
+    <div class="wrap">
+      <label><input type="checkbox" id="t-notes" checked> Show annotations</label>
+      <label><input type="checkbox" id="t-error"> Preview form error state</label>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ===================================================
+         PAGE 2: EMPLOYEE SURVEY FORM
+         Covers 4.1 Healthcare Workforce Data Input
+         =================================================== -->
+    <section class="page" id="survey" aria-labelledby="survey-title">
+      <div class="wrap">
+        <span class="page-tag">Page 2 of 3: Employee survey form</span>
+
+        <ol class="flow" aria-label="Progress">
+          <li>1. Home</li>
+          <li aria-current="step">2. Survey form</li>
+          <li>3. Prediction result</li>
+        </ol>
+
+        <div class="page-title stack">
+          <h1 id="survey-title">Employee survey form</h1>
+          <p>Enter the employee and workplace details the model was trained on. Fields marked required must be filled before AttriLens can run a prediction.</p>
+        </div>
+
+        <p class="note">REQ-4.1-1: users can type the fields or upload a file. Fields below are placeholders. Match them to the dataset's exact variables.</p>
+
+        <div class="survey-layout">
+
+          <form class="panel" action="#result" novalidate>
+
+            <!-- Error summary (REQ-4.1-3, REQ-4.1-4) -->
+            <div class="alert error-state" role="alert">
+              <h3>Fix 2 fields before predicting</h3>
+              <ul>
+                <li>Age: enter a number.</li>
+                <li>Overtime: choose Yes or No.</li>
+              </ul>
+            </div>
+
+            <fieldset class="form-section">
+              <legend>About the employee</legend>
+              <div class="form-grid">
+
+                <div class="field field--demo-error">
+                  <label for="age">Age <span class="opt">(required)</span></label>
+                  <input type="number" id="age" name="age" inputmode="numeric" placeholder="e.g. 34">
+                  <p class="field__error">Enter the employee's age as a number.</p>
+                </div>
+
+                <div class="field">
+                  <label for="gender">Gender <span class="opt">(required)</span></label>
+                  <select id="gender" name="gender">
+                    <option>Select an option</option>
+                    <option>Female</option>
+                    <option>Male</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="marital">Marital status <span class="opt">(required)</span></label>
+                  <select id="marital" name="marital">
+                    <option>Select an option</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Divorced</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="education">Education level <span class="opt">(required)</span></label>
+                  <select id="education" name="education">
+                    <option>Select an option</option>
+                    <option>Below college</option>
+                    <option>College</option>
+                    <option>Bachelor's</option>
+                    <option>Master's</option>
+                    <option>Doctorate</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="distance">Distance from home <span class="opt">(required)</span></label>
+                  <input type="number" id="distance" name="distance" inputmode="numeric" placeholder="e.g. 18">
+                  <p class="hint">In kilometers.</p>
+                </div>
+
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Role and tenure</legend>
+              <div class="form-grid">
+
+                <div class="field">
+                  <label for="department">Department <span class="opt">(required)</span></label>
+                  <select id="department" name="department">
+                    <option>Select an option</option>
+                    <option>Nursing</option>
+                    <option>Allied health</option>
+                    <option>Administration</option>
+                    <option>Support services</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="role">Job role <span class="opt">(required)</span></label>
+                  <select id="role" name="role">
+                    <option>Select an option</option>
+                    <option>Staff nurse</option>
+                    <option>Technician</option>
+                    <option>Administrator</option>
+                    <option>Manager</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="tenure">Years at the organization <span class="opt">(required)</span></label>
+                  <input type="number" id="tenure" name="tenure" inputmode="numeric" placeholder="e.g. 4">
+                </div>
+
+                <div class="field">
+                  <label for="in-role">Years in current role <span class="opt">(required)</span></label>
+                  <input type="number" id="in-role" name="in-role" inputmode="numeric" placeholder="e.g. 2">
+                </div>
+
+                <div class="field">
+                  <label for="income">Monthly income <span class="opt">(required)</span></label>
+                  <input type="number" id="income" name="income" inputmode="numeric" placeholder="Amount">
+                </div>
+
+                <div class="field">
+                  <label for="travel">Business travel <span class="opt">(required)</span></label>
+                  <select id="travel" name="travel">
+                    <option>Select an option</option>
+                    <option>Non-travel</option>
+                    <option>Rarely</option>
+                    <option>Frequently</option>
+                  </select>
+                </div>
+
+                <div class="field field--wide field--demo-error" role="group" aria-labelledby="overtime-label">
+                  <span class="label" id="overtime-label">Works overtime <span class="opt">(required)</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="overtime" value="yes"> Yes</label>
+                    <label class="choice"><input type="radio" name="overtime" value="no"> No</label>
+                  </div>
+                  <p class="field__error">Choose Yes or No.</p>
+                </div>
+
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Workplace experience</legend>
+              <div class="form-grid">
+
+                <div class="field field--wide" role="group" aria-labelledby="js-label">
+                  <span class="label" id="js-label">Job satisfaction <span class="opt">(required)</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="job-sat" value="1"> 1 Low</label>
+                    <label class="choice"><input type="radio" name="job-sat" value="2"> 2 Medium</label>
+                    <label class="choice"><input type="radio" name="job-sat" value="3"> 3 High</label>
+                    <label class="choice"><input type="radio" name="job-sat" value="4"> 4 Very high</label>
+                  </div>
+                </div>
+
+                <div class="field field--wide" role="group" aria-labelledby="wlb-label">
+                  <span class="label" id="wlb-label">Work-life balance <span class="opt">(required)</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="wlb" value="1"> 1 Bad</label>
+                    <label class="choice"><input type="radio" name="wlb" value="2"> 2 Good</label>
+                    <label class="choice"><input type="radio" name="wlb" value="3"> 3 Better</label>
+                    <label class="choice"><input type="radio" name="wlb" value="4"> 4 Best</label>
+                  </div>
+                </div>
+
+                <div class="field field--wide" role="group" aria-labelledby="env-label">
+                  <span class="label" id="env-label">Environment satisfaction <span class="opt">(required)</span></span>
+                  <div class="choices">
+                    <label class="choice"><input type="radio" name="env-sat" value="1"> 1 Low</label>
+                    <label class="choice"><input type="radio" name="env-sat" value="2"> 2 Medium</label>
+                    <label class="choice"><input type="radio" name="env-sat" value="3"> 3 High</label>
+                    <label class="choice"><input type="radio" name="env-sat" value="4"> 4 Very high</label>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="training">Training sessions last year <span class="opt">(required)</span></label>
+                  <input type="number" id="training" name="training" inputmode="numeric" placeholder="e.g. 3">
+                </div>
+
+              </div>
+            </fieldset>
+
+            <div class="actions form-actions">
+              <a class="btn btn--primary" href="#result">Predict attrition</a>
+              <button class="btn" type="reset">Clear form</button>
+            </div>
+          </form>
+
+          <aside class="stack" style="--gap: 24px" aria-label="Other ways to add data">
+            <div class="panel stack">
+              <h2>Upload a file instead</h2>
+              <div class="drop">
+                <strong>Drop a CSV file here</strong>
+                <span class="muted">or browse your computer</span>
+              </div>
+              <p class="hint">The file needs the same columns as this form. AttriLens checks it before running.</p>
+            </div>
+
+            <div class="panel panel--dashed stack">
+              <h2>What happens next</h2>
+              <ol class="steps">
+                <li>
+                  <h3>We check your entries</h3>
+                  <p>Missing or invalid values are flagged so you can fix them.</p>
+                </li>
+                <li>
+                  <h3>The model runs</h3>
+                  <p>Your data is prepared the same way as the study's training data.</p>
+                </li>
+                <li>
+                  <h3>You see the result</h3>
+                  <p>A prediction and its explanation appear together.</p>
+                </li>
+              </ol>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         PAGE 3: PREDICTION RESULT
+         Covers 4.2 Prediction, 4.3 SHAP, 4.4 Results presentation
+         =================================================== -->
+    <section class="page" id="result" aria-labelledby="result-title">
+      <div class="wrap">
+        <span class="page-tag">Page 3 of 3: Prediction result</span>
+
+        <ol class="flow" aria-label="Progress">
+          <li>1. Home</li>
+          <li>2. Survey form</li>
+          <li aria-current="step">3. Prediction result</li>
+        </ol>
+
+        <div class="page-title stack">
+          <h1 id="result-title">Attrition prediction result</h1>
+          <p>The ensemble model's prediction for the submitted employee, with the factors that shaped it. All numbers on this wireframe are sample values for layout only.</p>
+        </div>
+
+        <p class="note">REQ-4.4-4: the explanation always sits beside the prediction it belongs to.</p>
+
+        <div class="result-grid">
+
+          <!-- Main column -->
+          <div class="result-col">
+
+            <article class="panel" aria-labelledby="pred-title">
+              <div class="panel__head">
+                <h2 id="pred-title">Predicted outcome</h2>
+              </div>
+              <p class="outcome">Likely to leave</p>
+
+              <p class="note">REQ-4.2-5: show the probability only if the finalized model supports it. Otherwise hide this meter.</p>
+
+              <div>
+                <p><strong>Probability of leaving: 72%</strong></p>
+                <div class="meter-wrap">
+                  <div class="meter" role="img" aria-label="Probability of leaving, 72 percent">
+                    <span class="meter__fill" style="--p: 72%"></span>
+                  </div>
+                  <span class="meter__tick" aria-hidden="true"></span>
+                  <div class="meter__scale" aria-hidden="true">
+                    <span>0%</span>
+                    <span>50%</span>
+                    <span>100%</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel" aria-labelledby="shap-title">
+              <div class="panel__head">
+                <h2 id="shap-title">Why the model predicted this</h2>
+                <p>SHAP values for this case. A longer bar means the feature had more influence on this prediction.</p>
+              </div>
+
+              <p class="note">REQ-4.3-3 and 4.3-4: show the top features and which way each one pushed the prediction.</p>
+
+              <div class="shap-axis" aria-hidden="true">
+                <div>
+                  <span>Pushes toward staying</span>
+                  <span>Pushes toward leaving</span>
+                </div>
+              </div>
+
+              <ul class="shap">
+                <li>
+                  <span class="shap__label">Works overtime: Yes</span>
+                  <span class="shap__track"><span class="shap__bar shap__bar--up" style="--w: 84%"></span></span>
+                  <span class="shap__val">+0.21</span>
+                </li>
+                <li>
+                  <span class="shap__label">Years at organization: 4</span>
+                  <span class="shap__track"><span class="shap__bar shap__bar--up" style="--w: 56%"></span></span>
+                  <span class="shap__val">+0.14</span>
+                </li>
+                <li>
+                  <span class="shap__label">Job satisfaction: 2</span>
+                  <span class="shap__track"><span class="shap__bar shap__bar--up" style="--w: 44%"></span></span>
+                  <span class="shap__val">+0.11</span>
+                </li>
+                <li>
+                  <span class="shap__label">Work-life balance: 3</span>
+                  <span class="shap__track"><span class="shap__bar shap__bar--down" style="--w: 36%"></span></span>
+                  <span class="shap__val">&minus;0.09</span>
+                </li>
+                <li>
+                  <span class="shap__label">Age: 34</span>
+                  <span class="shap__track"><span class="shap__bar shap__bar--down" style="--w: 28%"></span></span>
+                  <span class="shap__val">&minus;0.07</span>
+                </li>
+                <li>
+                  <span class="shap__label">Distance from home: 18 km</span>
+                  <span class="shap__track"><span class="shap__bar shap__bar--up" style="--w: 20%"></span></span>
+                  <span class="shap__val">+0.05</span>
+                </li>
+                <li>
+                  <span class="shap__label">Department: Nursing</span>
+                  <span class="shap__track"><span class="shap__bar shap__bar--down" style="--w: 16%"></span></span>
+                  <span class="shap__val">&minus;0.04</span>
+                </li>
+              </ul>
+
+              <div class="legend" aria-hidden="true">
+                <span><i class="up"></i> Raises the chance of leaving</span>
+                <span><i class="down"></i> Lowers the chance of leaving</span>
+              </div>
+
+              <div class="callout" style="margin-top: 20px">
+                <strong>Read this as the model's reasoning, not as causes.</strong>
+                SHAP shows how the model weighed each feature for this case. It does not prove why a person leaves.
+              </div>
+              <p class="note" style="margin-top: 16px">REQ-4.3-5 and REQ-5.11: this notice must stay visible next to every explanation.</p>
+            </article>
+
+            <article class="panel panel--dashed" aria-labelledby="lime-title">
+              <div class="panel__head">
+                <h2 id="lime-title">Local explanation with LIME</h2>
+                <p>Shown only if LIME is part of the finished prototype.</p>
+              </div>
+              <table class="tbl">
+                <thead>
+                  <tr><th scope="col">Condition</th><th scope="col">Weight</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Works overtime = Yes</td><td>+0.00</td></tr>
+                  <tr><td>Job satisfaction &le; 2</td><td>+0.00</td></tr>
+                  <tr><td>Years at organization &le; 5</td><td>+0.00</td></tr>
+                  <tr><td>Work-life balance &ge; 3</td><td>&minus;0.00</td></tr>
+                </tbody>
+              </table>
+            </article>
+
+          </div>
+
+          <!-- Side column -->
+          <div class="result-col">
+
+            <aside class="panel" aria-labelledby="case-title">
+              <div class="panel__head">
+                <h2 id="case-title">Submitted values</h2>
+              </div>
+              <dl class="kv">
+                <div><dt>Age</dt><dd>34</dd></div>
+                <div><dt>Department</dt><dd>Nursing</dd></div>
+                <div><dt>Job role</dt><dd>Staff nurse</dd></div>
+                <div><dt>Years at organization</dt><dd>4</dd></div>
+                <div><dt>Works overtime</dt><dd>Yes</dd></div>
+                <div><dt>Job satisfaction</dt><dd>2 Medium</dd></div>
+                <div><dt>Work-life balance</dt><dd>3 Better</dd></div>
+                <div><dt>Distance from home</dt><dd>18 km</dd></div>
+              </dl>
+            </aside>
+
+            <aside class="panel" aria-labelledby="ens-title">
+              <div class="panel__head">
+                <h2 id="ens-title">Ensemble breakdown</h2>
+                <p>How each base model voted.</p>
+              </div>
+              <table class="tbl">
+                <thead>
+                  <tr><th scope="col">Model</th><th scope="col">Prediction</th><th scope="col">Probability</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Base model 1</td><td>Leave</td><td>0.00</td></tr>
+                  <tr><td>Base model 2</td><td>Leave</td><td>0.00</td></tr>
+                  <tr><td>Base model 3</td><td>Stay</td><td>0.00</td></tr>
+                  <tr class="final"><td>Ensemble</td><td>Leave</td><td>0.72</td></tr>
+                </tbody>
+              </table>
+            </aside>
+
+            <aside class="panel" aria-labelledby="perf-title">
+              <div class="panel__head">
+                <h2 id="perf-title">Model performance</h2>
+                <p>From the held-out test data in the study, not from this case.</p>
+              </div>
+              <dl class="metrics">
+                <div><dt>Accuracy</dt><dd>0.00</dd></div>
+                <div><dt>Precision</dt><dd>0.00</dd></div>
+                <div><dt>Recall</dt><dd>0.00</dd></div>
+                <div><dt>F1-score</dt><dd>0.00</dd></div>
+                <div><dt>ROC-AUC</dt><dd>0.00</dd></div>
+              </dl>
+            </aside>
+
+          </div>
+        </div>
+
+        <!-- REQ-4.4-5 -->
+        <div class="actions result-actions">
+          <a class="btn btn--primary" href="#survey">Submit another case</a>
+          <a class="btn" href="#survey">Clear analysis</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         PAGE 1: LANDING (default view)
+         Kept last in the DOM so CSS can hide it when another page is targeted.
+         =================================================== -->
+    <section class="page" id="landing" aria-labelledby="landing-title">
+      <div class="wrap">
+        <span class="page-tag">Page 1 of 3: Landing page</span>
+
+        <ol class="flow" aria-label="Progress">
+          <li aria-current="step">1. Home</li>
+          <li>2. Survey form</li>
+          <li>3. Prediction result</li>
+        </ol>
+
+        <p class="note">One clear action on this page: start a prediction. The hero preview shows what the user will get at the end.</p>
+
+        <div class="hero">
+          <div class="hero__copy stack">
+            <h1 id="landing-title">See which workforce factors point toward attrition</h1>
+            <p>Enter an employee's details and AttriLens returns a predicted attrition outcome from the study's ensemble model, along with the factors that shaped that prediction.</p>
+            <div class="actions">
+              <a class="btn btn--primary" href="#survey">Start a prediction</a>
+              <a class="btn" href="#how">See how it works</a>
+            </div>
+          </div>
+
+          <figure class="sketch" aria-label="Preview of a prediction result">
+            <p class="sketch__title">Preview of a result</p>
+            <p class="sketch__outcome">Likely to leave</p>
+            <div class="meter" role="img" aria-label="Sample probability meter">
+              <span class="meter__fill" style="--p: 72%"></span>
+            </div>
+            <ul class="shap" style="margin-top: 14px" aria-hidden="true">
+              <li>
+                <span class="shap__label">Feature A</span>
+                <span class="shap__track"><span class="shap__bar shap__bar--up" style="--w: 70%"></span></span>
+                <span class="shap__val"></span>
+              </li>
+              <li>
+                <span class="shap__label">Feature B</span>
+                <span class="shap__track"><span class="shap__bar shap__bar--down" style="--w: 45%"></span></span>
+                <span class="shap__val"></span>
+              </li>
+              <li>
+                <span class="shap__label">Feature C</span>
+                <span class="shap__track"><span class="shap__bar shap__bar--up" style="--w: 30%"></span></span>
+                <span class="shap__val"></span>
+              </li>
+            </ul>
+          </figure>
+        </div>
+
+        <div class="landing-grid">
+          <section class="panel" id="how" aria-labelledby="how-title">
+            <h2 id="how-title">How it works</h2>
+            <ol class="steps" style="margin-top: 20px">
+              <li>
+                <h3>Enter employee details</h3>
+                <p>Fill in the survey form with the workplace information the model was trained on.</p>
+              </li>
+              <li>
+                <h3>Get a prediction</h3>
+                <p>The ensemble model returns a predicted outcome and, where available, a probability.</p>
+              </li>
+              <li>
+                <h3>Read the explanation</h3>
+                <p>SHAP shows which features contributed most to this one prediction.</p>
+              </li>
+            </ol>
+          </section>
+
+          <section class="panel panel--dashed" aria-labelledby="know-title">
+            <h2 id="know-title">Good to know</h2>
+            <ul class="facts" style="margin-top: 20px">
+              <li>Explanations describe what the model weighed. They do not show what caused someone to leave.</li>
+              <li>AttriLens is a prototype interface for the study's validated framework. It is not a separate model.</li>
+              <li>It does not measure or predict migration readiness. That topic is reserved for future research.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>AttriLens prototype wireframe</span>
+      <span>Explainable Ensemble Machine Learning Framework for healthcare workforce attrition</span>
+    </div>
+  </footer>
+</body>
+</html>
